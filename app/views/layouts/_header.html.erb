@@ -7,6 +7,9 @@
       <div class="main-menu__item">
         <%= link_to "Вход", new_user_session_path %>
       </div>
+      <div class="main-menu__item">
+        <%= link_to "Выход", destroy_user_session_path, method: :delete %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,12 @@
+<%= form_with(model: post, url: posts_path, method: "post") do |f| %>
+  <div>
+    <%= f.hidden_field :image, value: @post.cached_image_data, id: nil %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <%= f.label :caption %>
+    <%= f.text_field :caption %>
+  </div>
+  <%= f.submit %>
+<% end %>
