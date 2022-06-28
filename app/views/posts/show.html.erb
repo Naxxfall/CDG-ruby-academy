@@ -1,0 +1,9 @@
+<%= image_tag post.image_url %>
+<%= post.caption %>
+<%= post.user.name %>
+<%= post.created_at %>
+<%= post.comments.each do |comment|%>
+  <%= comment.text %>
+  <%= comment.created_at %>
+  <%= comment.user.name %>
+<% end %>

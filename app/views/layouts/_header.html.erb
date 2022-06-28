@@ -1,15 +1,21 @@
 <div class="header-wrapper">
   <div class="main-menu-wrapper">
-    <div class="main-menu__list">
-      <div class="main-menu__item">
-        <%= link_to "Главная", posts_path %>
-      </div>
-      <div class="main-menu__item">
-        <%= link_to "Вход", new_user_session_path %>
-      </div>
-      <div class="main-menu__item">
-        <%= link_to "Выход", destroy_user_session_path, method: :delete %>
-      </div>
-    </div>
+    <ul class="main-menu__list">
+      <li class="main-menu__item">
+        <%= link_to "Главная", root_path %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="main-menu__item">
+          <%= current_user.name %>
+        </li>
+        <li class="main-menu__item">
+          <%= link_to "Выход", destroy_user_session_path %>
+        </li>
+       <% else %>
+        <li class="main-menu__item">
+          <%= link_to "Вход", new_user_session_path %>
+        </li>
+        <% end %>
+    </ul>
   </div>
 </div>
