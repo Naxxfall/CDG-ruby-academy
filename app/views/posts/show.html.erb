@@ -3,9 +3,20 @@
   <%= @post.caption %>
   <%= @post.user.name %>
   <%= @post.created_at %>
+</div>
+<h2>Комментарии:</h2>
+<div class="comments_wrapper">
   <%= @post.comments.each do |comment|%>
     <%= comment.text %>
     <%= comment.created_at %>
     <%= comment.user.name %>
   <% end %>
 </div>
+<h2>Комментировать:</h2>
+<%= form_with model: @post.comments.build, url: [@post, @post.comments.build] do |f| %>
+  <div>
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+  </div>
+  <%= f.submit %>
+<% end %>
