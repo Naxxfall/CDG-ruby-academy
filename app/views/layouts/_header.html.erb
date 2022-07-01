@@ -4,6 +4,9 @@
       <li class="main-menu__item">
         <%= link_to "Главная", root_path %>
       </li>
+      <li class="main-menu__item">
+        <%= link_to "Пользователи", users_path %>
+      </li>
       <% if user_signed_in? %>
         <li class="main-menu__item">
           <%= current_user.name %>
