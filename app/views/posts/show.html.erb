@@ -3,6 +3,14 @@
   <%= @post.caption %>
   <%= @post.user.name %>
   <%= @post.created_at %>
+  <%= @like = @post.likes.detect {|u| u["user_id"] == current_user.id }%>
+  <% if @like %>
+    <%= render 'unlike', like: @like %>
+  <% else %>
+    <%= render 'like', like: Like.new %>
+  <% end %>
+
+  <%= @post.likes_count %>
 </div>
 <h2>Комментарии:</h2>
 <div class="comments_wrapper">
