@@ -1,0 +1,17 @@
+.post__item {
+  list-style: none;
+  float: left;
+  position: relative;
+  background-color: white;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 1px 2px 3px black;
+}
+
+.post__item:hover {
+  box-shadow: 5px 10px 50px black;
+  -webkit-transform: scale(1.1,1.1) !important;
+  z-index: 20 !important;
+}
