@@ -1,0 +1,16 @@
+<section class="comments">
+  <h2>Комментарии:</h2>
+  <div class="comments__wrapper">
+    <ul class="comments__list">
+      <% @post.comments.each do |comment|%>
+        <li class="comments__item">
+          <div class="comment__user"><%= link_to comment.user.name, comment.user, class: "link user__link" %>:</div>
+          <div class="comment__text"><%= comment.text %></div>
+          <div class="comment__time datetime">
+            <%= localize(comment.created_at, :format => :long) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

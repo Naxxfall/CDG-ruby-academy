@@ -1,6 +1,16 @@
-<h1><%= @user.name %></h1>
-<% if current_user.following?(@user) %>
-  <%= render 'unfollow', user: @user %>
-<% else %>
-  <%= render 'follow', user: @user %>
-<% end %>
+<section class="profile">
+  <h1><%= @user.name %></h1>
+  <% if current_user.following?(@user) %>
+    <%= render 'unfollow', user: @user %>
+  <% else %>
+    <%= render 'follow', user: @user %>
+  <% end %>
+</section>
+<section class="gallery user-gallery">
+  <% @user_posts = @user.posts %>
+  <% if @user_posts.empty? %>
+    <p>У пользователя нет постов</p>
+  <% else %>
+    <%= render 'posts' %>
+  <% end %>
+</section>

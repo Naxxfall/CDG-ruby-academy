@@ -1,0 +1,8 @@
+<h2>Комментировать:</h2>
+<%= form_with model: @post.comments.build, url: [@post, @post.comments.build] do |f| %>
+  <div>
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+  </div>
+  <%= f.submit class: "button" %>
+<% end %>
