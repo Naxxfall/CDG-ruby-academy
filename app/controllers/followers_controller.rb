@@ -1,11 +1,14 @@
 class FollowersController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @user = User.find(params[:user_id])
-    @follow = Follower.new
-    @follow.followed = @user
-    @follow.follower = current_user
-    redirect_to @user if @follow.save
+    if current_user != @user
+      @follow = Follower.new
+      @follow.followed = @user
+      @follow.follower = current_user
+      redirect_to @user if @follow.save
+    end
   end
 
   def destroy

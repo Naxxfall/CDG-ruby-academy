@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create, :edit, :destroy]
   end
+  get '/feed', to: 'posts#subscriptions'
   resources :likes, only: [:create, :destroy]
   resources :users do
     member do

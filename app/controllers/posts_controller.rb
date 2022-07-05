@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @posts = Post.all.sort_by(&:created_at).reverse
   end
@@ -18,6 +20,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def subscriptions
+    @posts = []
+    current_user.following.each do |follower|
+      follower.posts.each do |post|
+        @posts.push(post)
+      end
+    end
   end
 
   def edit

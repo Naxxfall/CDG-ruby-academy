@@ -6,18 +6,23 @@
     <div class="post__caption"><%= @post.caption %></div>
     <div class="post__user"><%= @post.user.name %></div>
     <div class="post__time"><%= localize(@post.created_at, :format => :long) %></div>
-    <% @like = @post.likes.detect {|u| u["user_id"] == current_user.id }%>
-    <% if @like %>
-      <%= render 'unlike', like: @like %>
-    <% else %>
-      <%= render 'like', like: Like.new %>
-    <% end %>
     <div class="post__likes_count"><%= @post.likes_count %></div>
+    <% if user_signed_in? %>
+      <% @like = @post.likes.detect {|u| u["user_id"] == current_user.id }%>
+      <% if @like %>
+        <%= render 'unlike', like: @like %>
+      <% else %>
+        <%= render 'like', like: Like.new %>
+      <% end %>
+      <% if @post.user == current_user %>
+        <%= link_to "Edit", edit_post_path(@post) %>
+        <%= link_to 'Destroy', post_path(@post), data: { "turbo-method": :delete, confirm: 'Вы уверены?' } %>
+      <% end %>
+    <% end %>
   </div>
 </section>
-<%= link_to "Edit", edit_post_path(@post)%>
-<%= link_to 'Destroy', post_path(@post), data: { "turbo-method": :delete, confirm: 'Вы уверены?' } %>
+
 <% @comments = @post.comments %>
-<%= render 'comments' if @comments != [] %>
-<%= render 'comment_form', post: @post %>
+<%= render 'comments' if !@comments.empty? %>
+<%= render 'comment_form', post: @post if user_signed_in?%>
 
