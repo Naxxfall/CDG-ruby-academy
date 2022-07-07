@@ -1,28 +1,30 @@
 <div class="header-wrapper">
-  <div class="main-menu-wrapper">
+  <div class="main-menu-wrapper content-wrapper">
     <ul class="main-menu__list">
       <li class="main-menu__item">
-        <%= link_to "Главная", root_path %>
+        <%= link_to "Главная", root_path, class: "main-menu__link" %>
       </li>
       <li class="main-menu__item">
-        <%= link_to "Пользователи", users_path %>
+        <%= link_to "Пользователи", users_path, class: "main-menu__link" %>
       </li>
+    </ul>
+    <ul class="main-menu__list main-menu__login">
       <% if user_signed_in? %>
-        <li class="main-menu__item">
-          <%= current_user.name %>
+        <li class="main-menu__item--user-name">
+          <div class="main-menu__user-name"><%= current_user.name %></div>
         </li>
         <li class="main-menu__item">
-          <%= link_to "Подписки", feed_path %>
+          <%= link_to "Подписки", feed_path, class: "main-menu__link" %>
         </li>
         <li class="main-menu__item">
-          <%= link_to "Новый пост", new_post_path %>
+          <%= link_to "Новый пост", new_post_path, class: "main-menu__link" %>
         </li>
         <li class="main-menu__item">
-          <%= link_to "Выход", destroy_user_session_path %>
+          <%= link_to "Выход", destroy_user_session_path, class: "main-menu__link" %>
         </li>
        <% else %>
         <li class="main-menu__item">
-          <%= link_to "Вход", new_user_session_path %>
+          <%= link_to "Вход", new_user_session_path, class: "main-menu__link button--login" %>
         </li>
         <% end %>
     </ul>

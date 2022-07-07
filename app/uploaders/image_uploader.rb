@@ -1,6 +1,7 @@
 class ImageUploader < Shrine
 
   plugin :validation_helpers
+  plugin :cached_attachment_data
 
   Attacher.validate do
     validate_size      1..5*1024*1024

@@ -1,12 +1,12 @@
-<%= form_for @post do |f| %>
-  <div>
+<div class="form__wrapper">
+  <%= form_for @post do |f| %>
     <%= f.hidden_field :image, value: @post.cached_image_data, id: nil %>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <div>
-    <%= f.label :caption %>
-    <%= f.text_field :caption %>
-  </div>
-  <%= f.submit %>
-<% end %>
+    <label>
+      <span class="button">Изображение</span>
+      <%= f.file_field :image, class: "visually-hidden" %>
+    </label>
+    <%= f.label "Подпись", class: "form__label" %>
+    <%= f.text_field :caption, class: "form__input form__input--large" %>
+    <%= f.submit class: "button" %>
+  <% end %>
+</div>
