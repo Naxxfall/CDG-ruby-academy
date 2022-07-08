@@ -15,3 +15,23 @@
   -webkit-transform: scale(1.1,1.1) !important;
   z-index: 20 !important;
 }
+
+.card__info{
+  display: flex;
+  flex-direction: column;
+}
+
+.card__user{
+  display: flex;
+}
+
+.card__info-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: end;
+}
+
+.post__show-link{
+  color: #474843;
+}

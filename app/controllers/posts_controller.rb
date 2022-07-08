@@ -38,8 +38,7 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-      #redirect_to post_path(@post)
-      redirect_to posts_path
+      redirect_to @post
     else
       render :edit
     end
@@ -48,7 +47,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     if @post.destroy
-      redirect_to posts_path
+      redirect_to posts_path, status: 303
     end
   end
 
