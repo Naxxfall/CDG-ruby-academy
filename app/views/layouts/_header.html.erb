@@ -1,8 +1,14 @@
 <div class="header-wrapper">
   <div class="main-menu-wrapper content-wrapper">
     <ul class="main-menu__list">
-      <li class="main-menu__item">
-        <%= link_to "Главная", root_path, class: "main-menu__link" %>
+      <li class="main-menu__item main-menu__logo">
+        <% if (request.path == root_path) || (request.path == posts_path) %>
+          <%= image_tag "logo.svg", class: "header__logo" %>
+        <% else %>
+          <%= link_to root_path do %>
+            <%= image_tag "logo.svg", class: "header__logo" %>
+          <% end %>
+        <% end %>
       </li>
       <li class="main-menu__item">
         <%= link_to "Пользователи", users_path, class: "main-menu__link" %>

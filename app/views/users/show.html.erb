@@ -1,5 +1,5 @@
 <section class="profile">
-  <h1><%= @user.name %></h1>
+  <h1 class="page-header"> Пользователь <%= @user.name %></h1>
   <% if user_signed_in? %>
     <% if current_user != @user %>
       <% if current_user.following?(@user) %>
@@ -9,12 +9,20 @@
       <% end %>
     <% end %>
   <% end %>
-</section>
-<section class="gallery user-gallery">
-  <% @user_posts = @user.posts %>
-  <% if @user_posts.empty? %>
-    <p>У пользователя нет постов</p>
-  <% else %>
-    <%= render 'posts' %>
-  <% end %>
+  <div class="gallery user-gallery">
+    <% @user_posts = @user.posts %>
+    <% if @user_posts.empty? %>
+      <p>У пользователя нет постов</p>
+    <% else %>
+      <div class="gallery__wrapper">
+        <ul class="card__list">
+          <% @user_posts.each do |post| %>
+            <li class="card__item" style="-webkit-transform : rotate(<%= rand(-10..10) %>deg); z-index: <%= rand(1..2)%>;">
+              <%= render "posts/card", post: post %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </section>
