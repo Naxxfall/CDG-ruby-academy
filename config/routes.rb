@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :edit, :destroy]
   end
   get '/feed', to: 'posts#subscriptions'
-  resources :likes, only: [:create, :destroy]
+  resource :likes, only: [:create, :destroy]
   resources :users do
     member do
       get :following, :followers

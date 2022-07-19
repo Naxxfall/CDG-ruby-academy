@@ -18,11 +18,10 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "#show" do
-    #before { sign_in user }
     subject { process :show, params: params }
-    let(:user) { users.first }
+    let!(:user) { users.first }
     let(:params) { { id: user.id }}
-    #let(:user_posts) { create_list(:post, 5) }
+    let!(:user_posts) { create_list(:post, 5, user: user) }
 
     it "renders the user template" do
       subject
@@ -34,10 +33,10 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq user
     end
 
-    #it 'assigns @user_posts' do
-    #subject
-    #expect(assigns(:user_posts)).to eq user_posts
-    #end
+    it 'assigns @user_posts' do
+      subject
+      expect(assigns(:user_posts)).to eq user_posts
+    end
   end
 
 end

@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:user) { create :user }
-  let(:post) { create :post }
+  let!(:user) { create :user }
+  let!(:post) { create :post }
   before { sign_in user }
 
   describe "#create" do
     subject { process :create, method: :post, params: params }
+    #subject { process "/posts/#{post.id}/comments", method: :post, params: params }
+
     let(:params) {{ comment: attributes_for(:comment, user: user, post: post) }}
 
     it "creates a comment" do

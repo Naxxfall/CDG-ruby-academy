@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  let(:user) { create :user }
+  let!(:user) { create :user }
 
   describe "#index" do
     subject { process :index }
-
-    let(:posts) { create_list(:post, 5) }
+    let!(:posts) { create_list(:post, 5) }
 
     it "renders the index template" do
       subject
@@ -15,7 +14,7 @@ RSpec.describe PostsController, type: :controller do
 
     it 'assigns @posts' do
       subject
-      expect(assigns(:posts)).to eq posts
+      expect(assigns(:posts)).to eq posts.sort_by(&:created_at).reverse
     end
   end
 
@@ -23,6 +22,7 @@ RSpec.describe PostsController, type: :controller do
     subject { process :show, params: params }
     let(:post) { create :post }
     let(:params) { { id: post.id }}
+
 
     it "renders the post template" do
       subject
@@ -51,13 +51,13 @@ RSpec.describe PostsController, type: :controller do
 
   end
 
-  describe "#create" do
+  describe "#create @post" do
     before { sign_in user }
+    let!(:params) { { post: attributes_for(:post), user: user } }
     subject { process :create, method: :post, params: params }
-    let(:params) { { post: attributes_for(:post, user: user ) } }
 
     it "creates a post" do
-      expect{ subject }.to change(Post, :count).by(1)
+      expect{ subject }.to change(user.posts, :count).by(1)
     end
 
     it "redirects to post page" do
