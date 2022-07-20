@@ -7,7 +7,6 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "#create" do
     subject { process :create, method: :post, params: params }
-    #subject { process "/posts/#{post.id}/comments", method: :post, params: params }
 
     let(:params) {{ comment: attributes_for(:comment, user: user, post: post) }}
 

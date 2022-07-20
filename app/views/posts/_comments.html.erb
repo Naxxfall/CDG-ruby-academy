@@ -5,10 +5,21 @@
       <% @post.comments.each do |comment|%>
         <li class="comments__item">
           <div class="comment__user"><%= link_to comment.user.name, comment.user, class: "link user-link" %>:</div>
+          <p class="comment__id visually-hidden"><%= comment.id %></p>
           <div class="comment__text"><%= comment.text %></div>
           <div class="comment__time datetime">
-            <%= localize(comment.created_at, :format => :long) %>
+            <%= localize(comment.updated_at, :format => :long) %>
           </div>
+          <% if comment.user == current_user %>
+            <div class="comment__controls">
+              <button class="comment__control comment__control--edit">Редактировать</button>
+              <button class="comment__control comment__control--delete">Удалить</button>
+              <form class="visually-hidden delete-comment__form" action="<%= comments_path %>" method="delete">
+                <input type="hidden" class="delete-comment__id" name="comment_id">
+                <input class="delete-comment-button" type="submit">
+              </form>
+            </div>
+          <% end %>
         </li>
       <% end %>
     </ul>

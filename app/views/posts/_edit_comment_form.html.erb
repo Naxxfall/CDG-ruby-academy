@@ -1,0 +1,10 @@
+<section class="comment_edit visually-hidden">
+  <h2>Изменить комментарий:</h2>
+  <form action="<%= comments_path %>" method="patch">
+      <label class="form__label" for="comment_edit">Ещё можно всё исправить...</label>
+        <input type="hidden" class="comment_edit__id" name="comment_id">
+        <input class="form__input form__input--large comment_edit__text" type="text" name="text">
+
+    <input class="button" type="submit" value="Отправить">
+  </form>
+</section>

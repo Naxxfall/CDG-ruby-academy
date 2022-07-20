@@ -31,5 +31,6 @@
 
 <% @comments = @post.comments %>
 <%= render 'comments' if !@comments.empty? %>
-<%= render 'comment_form', post: @post if user_signed_in?%>
 
+<%= render 'comment_form', post: @post if user_signed_in? %>
+<%= render 'edit_comment_form' if user_signed_in? %>

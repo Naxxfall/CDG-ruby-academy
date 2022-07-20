@@ -311,6 +311,21 @@ a{
     height: 55px;
 }
 
+.header__logo--link:hover,
+.header__logo--link:focus,
+.header__logo--link:active{
+    background-color: #F7F7F7;
+}
+
 .main-menu__logo {
     margin-right: 10px;
+}
+
+.comment__control{
+    color: #991818;
+    background-color: #F7F7F7;
+}
+
+.comment__control:hover{
+    background-color: #C9D1D3;
 }
