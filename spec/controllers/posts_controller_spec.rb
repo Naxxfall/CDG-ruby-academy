@@ -23,7 +23,6 @@ RSpec.describe PostsController, type: :controller do
     let(:post) { create :post }
     let(:params) { { id: post.id }}
 
-
     it "renders the post template" do
       subject
       expect(response).to render_template :show
@@ -117,10 +116,6 @@ RSpec.describe PostsController, type: :controller do
 
     context "when user tries to remove someone's post" do
       let(:post) { create :post }
-
-      it "does not delete the post" do
-        expect { subject }.to change(user.posts, :count).by(0)
-      end
 
       it "raises exception" do
         expect { subject }.to raise_exception(ActiveRecord::RecordNotFound)
